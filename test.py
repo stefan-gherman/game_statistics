@@ -55,6 +55,11 @@ class Tester(unittest.TestCase):
             self.input_file, "Counter-Strike")
         self.assertEqual(result, 6)
 
+    def test_5_raises_error_when_no_game(self):
+        with self.assertRaises(ValueError):
+            result = reports.get_line_number_by_title(
+                self.input_file, "Non-existing game")
+
     def test_bonus_1_sort_abc(self):
         sorted_result = reports.sort_abc(self.input_file)
         expected_result = get_sorted()
