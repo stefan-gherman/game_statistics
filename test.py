@@ -83,6 +83,10 @@ class Tester(unittest.TestCase):
         result = reports.when_was_top_sold_fps(self.input_file)
         self.assertEqual(result, 1999)
 
+    def test_bonus_3_raises_error_when_no_fps_game(self):
+        with self.assertRaises(ValueError):
+            result = reports.when_was_top_sold_fps("game_stat_nofpstest.txt")
+
 
 def main():
     unittest.main()
