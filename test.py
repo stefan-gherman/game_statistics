@@ -76,8 +76,7 @@ class Tester(unittest.TestCase):
                                   "Real-time strategy", "RPG", "Sandbox",
                                   "Simulation", "Survival game"])
 
-        sorted_result = sorted(result)
-        self.assertEqual(sorted_result, expected_result)
+        self.assertEqual(result, expected_result)
 
     def test_bonus_3_when_was_top_sold_fps(self):
         result = reports.when_was_top_sold_fps(self.input_file)
