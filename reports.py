@@ -17,6 +17,15 @@ def open_file():
 def count_games(lst):
     return len(lst)
 
+
+def decide(lst, year):
+    GAME_YEAR = 2
+
+    for sublist in range(len(lst)):
+        if lst[sublist][GAME_YEAR] == str(year):
+            return True
+    return False        
+
 text_file = open_file()
-print(count_games(text_file))
+
 
