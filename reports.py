@@ -1,5 +1,17 @@
 
 # Report functions
+def insertion_sort(lst):
+    for i in range(1,len(lst)):
+        current = lst[i]
+        j = i - 1
+
+        while j >= 0 and current < lst[j]:
+            lst[j+1] = lst[j]
+            j -= 1
+        lst[j+1] = current    
+    
+    return lst            
+
 
 def open_file():
 
@@ -62,9 +74,17 @@ def get_line_number_by_title(lst, title):
 def sort_abc(lst,title):
 
     GAME_TITLE = 0
-    
+
+    lst = open_file()
+
+    titles = []
+
+    for sublist in range(len(lst)):
+        titles.append(lst[sublist][GAME_TITLE])
 
 
+
+print(insertion_sort(['forest', 'borsett','california', 'sith']))
 
 
 
