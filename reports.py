@@ -26,6 +26,19 @@ def decide(lst, year):
             return True
     return False        
 
+
+def get_latest(lst):
+    GAME_YEAR = 2
+    GAME_TITLE = 0
+
+    late_year = -1
+
+    for sublist in range(len(lst)):
+        if int(lst[sublist][GAME_YEAR]) > late_year:
+            late_year = int(lst[sublist][GAME_YEAR])
+            title = lst[sublist][GAME_TITLE]
+    return title
+
 text_file = open_file()
 
 
