@@ -39,6 +39,19 @@ def get_latest(lst):
             title = lst[sublist][GAME_TITLE]
     return title
 
+
+def count_by_genre(lst, genre):
+    GAME_GENRE = 3
+
+    current_genre_count = 0
+    for sublist in range(len(lst)):
+        if lst[sublist][GAME_GENRE] == str(genre):
+            current_genre_count += 1 
+    return current_genre_count        
+
 text_file = open_file()
+
+
+
 
 
