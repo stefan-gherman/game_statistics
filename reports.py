@@ -15,12 +15,13 @@ def open_file():
     return games_db
 
 def count_games(lst):
+    lst = open_file()
     return len(lst)
 
 
 def decide(lst, year):
     GAME_YEAR = 2
-
+    lst = open_file()
     for sublist in range(len(lst)):
         if lst[sublist][GAME_YEAR] == str(year):
             return True
@@ -30,7 +31,7 @@ def decide(lst, year):
 def get_latest(lst):
     GAME_YEAR = 2
     GAME_TITLE = 0
-
+    lst = open_file()
     late_year = -1
 
     for sublist in range(len(lst)):
@@ -42,7 +43,7 @@ def get_latest(lst):
 
 def count_by_genre(lst, genre):
     GAME_GENRE = 3
-
+    lst = open_file()
     current_genre_count = 0
     for sublist in range(len(lst)):
         if lst[sublist][GAME_GENRE] == str(genre):
@@ -52,12 +53,16 @@ def count_by_genre(lst, genre):
 
 def get_line_number_by_title(lst, title):
     GAME_TITLE = 0
-
+    lst = open_file()
     for sublist in range(len(lst)):
         if lst[sublist][GAME_TITLE] == str(title):
             return sublist + 1
     raise ValueError('Non-existing game')        
 
+def sort_abc(lst,title):
+
+    GAME_TITLE = 0
+    
 
 
 
