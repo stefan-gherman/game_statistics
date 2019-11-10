@@ -59,8 +59,6 @@ def get_line_number_by_title(lst, title):
     raise ValueError('Non-existing game')        
 
 
-text_file = open_file()
-
 
 
 
