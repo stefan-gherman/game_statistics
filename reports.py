@@ -49,7 +49,18 @@ def count_by_genre(lst, genre):
             current_genre_count += 1 
     return current_genre_count        
 
+
+def get_line_number_by_title(lst, title):
+    GAME_TITLE = 0
+
+    for sublist in range(len(lst)):
+        if lst[sublist][GAME_TITLE] == str(title):
+            return sublist + 1
+    raise ValueError('Non-existing game')        
+
+
 text_file = open_file()
+
 
 
 
