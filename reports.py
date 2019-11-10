@@ -14,8 +14,9 @@ def open_file():
 
     return games_db
 
-def count_games(text_file):
-    pass
+def count_games(lst):
+    return len(lst)
 
 text_file = open_file()
-print(type(text_file))
+print(count_games(text_file))
+
