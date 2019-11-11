@@ -137,4 +137,17 @@ def when_was_top_sold_fps(filename):
     return float(year)            
 
 
+def get_most_played(filename):
+    lst = open_file(filename)
 
+    GAME_TITLE = 0
+    GAME_SALES = 1
+
+    max_sales = -1
+
+    for sublist in range(len(lst)):
+        if float(lst[sublist][GAME_SALES]) > max_sales:
+            max_sales = float(lst[sublist][GAME_SALES])
+            name = lst[sublist][GAME_TITLE]
+    
+    return name
