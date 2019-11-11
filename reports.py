@@ -22,9 +22,9 @@ def selection_sort(lst):
         lst[i],lst[index_min] = lst[index_min], lst[i]        
     return lst    
 
-def open_file():
+def open_file(filename):
 
-    with open ('game_stat.txt') as game_text:
+    with open (filename) as game_text:
 
         games_db = game_text.readlines()
 
@@ -36,13 +36,13 @@ def open_file():
     return games_db
 
 def count_games(lst):
-    lst = open_file()
+    lst = open_file(lst)
     return len(lst)
 
 
 def decide(lst, year):
     GAME_YEAR = 2
-    lst = open_file()
+    lst = open_file(lst)
     for sublist in range(len(lst)):
         if lst[sublist][GAME_YEAR] == str(year):
             return True
@@ -52,7 +52,7 @@ def decide(lst, year):
 def get_latest(lst):
     GAME_YEAR = 2
     GAME_TITLE = 0
-    lst = open_file()
+    lst = open_file(lst)
     late_year = -1
 
     for sublist in range(len(lst)):
@@ -64,7 +64,7 @@ def get_latest(lst):
 
 def count_by_genre(lst, genre):
     GAME_GENRE = 3
-    lst = open_file()
+    lst = open_file(lst)
     current_genre_count = 0
     for sublist in range(len(lst)):
         if lst[sublist][GAME_GENRE] == str(genre):
@@ -74,7 +74,7 @@ def count_by_genre(lst, genre):
 
 def get_line_number_by_title(lst, title):
     GAME_TITLE = 0
-    lst = open_file()
+    lst = open_file(lst)
     for sublist in range(len(lst)):
         if lst[sublist][GAME_TITLE] == str(title):
             return sublist + 1
@@ -84,7 +84,7 @@ def sort_abc(lst):
 
     GAME_TITLE = 0
 
-    lst = open_file()
+    lst = open_file(lst)
 
     titles = []
 
@@ -96,6 +96,45 @@ def sort_abc(lst):
     return titles    
 
 
+def get_genres(lst):
+    lst = open_file(lst)
+    GAME_GENRE = 3
+
+    genres = []
+
+    for sublist in range(len(lst)):
+        if lst[sublist][GAME_GENRE] not in genres:
+            genres.append(lst[sublist][GAME_GENRE])
+    genres = selection_sort(genres)
+    return genres        
+
+def when_was_top_sold_fps(filename):
+
+    lst = open_file(filename)
+
+    GAME_YEAR = 2
+    GAME_SALES = 1
+    GAME_GENRE = 3
+
+    SEARCH_GENRE = 'First-person shooter'
+
+    
+
+    if SEARCH_GENRE not in get_genres(filename):
+        raise ValueError
+
+
+         
+
+    year = -1
+    sales = -1
+    for sublist in range(len(lst)):
+        if lst[sublist][GAME_GENRE] == SEARCH_GENRE:
+            if float(lst[sublist][GAME_SALES]) > sales:
+                sales = float(lst[sublist][GAME_SALES])
+                year = lst[sublist][GAME_YEAR]
+
+    return float(year)            
 
 
 
