@@ -187,3 +187,32 @@ def count_longest_title(filename):
             len_name = len(lst[sublist][GAME_TITLE])
 
     return len_name        
+
+
+def get_date_avg(filename):
+
+    lst = open_file(filename)
+
+    GAME_YEAR = 2
+
+    sum_years = 0
+
+    for sublist in range(len(lst)):
+        sum_years += int(lst[sublist][GAME_YEAR])
+
+    return  int(sum_years / len(lst))    
+
+
+def get_game(filename, title):
+
+    lst = open_file(filename)
+
+    GAME_TITLE = 0
+
+    #list_output = []
+    
+    for sublist in range(len(lst)):
+        if lst[sublist][GAME_TITLE] == title:
+            return lst[sublist]
+
+    return "Game {} not found.".format(title)         
