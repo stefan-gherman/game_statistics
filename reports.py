@@ -35,24 +35,24 @@ def open_file(filename):
 
     return games_db
 
-def count_games(lst):
-    lst = open_file(lst)
+def count_games(filename):
+    lst = open_file(filename)
     return len(lst)
 
 
-def decide(lst, year):
+def decide(filename, year):
     GAME_YEAR = 2
-    lst = open_file(lst)
+    lst = open_file(filename)
     for sublist in range(len(lst)):
         if lst[sublist][GAME_YEAR] == str(year):
             return True
     return False        
 
 
-def get_latest(lst):
+def get_latest(filename):
     GAME_YEAR = 2
     GAME_TITLE = 0
-    lst = open_file(lst)
+    lst = open_file(filename)
     late_year = -1
 
     for sublist in range(len(lst)):
@@ -62,9 +62,9 @@ def get_latest(lst):
     return title
 
 
-def count_by_genre(lst, genre):
+def count_by_genre(filename, genre):
     GAME_GENRE = 3
-    lst = open_file(lst)
+    lst = open_file(filename)
     current_genre_count = 0
     for sublist in range(len(lst)):
         if lst[sublist][GAME_GENRE] == str(genre):
@@ -72,19 +72,19 @@ def count_by_genre(lst, genre):
     return current_genre_count        
 
 
-def get_line_number_by_title(lst, title):
+def get_line_number_by_title(filename, title):
     GAME_TITLE = 0
-    lst = open_file(lst)
+    lst = open_file(filename)
     for sublist in range(len(lst)):
         if lst[sublist][GAME_TITLE] == str(title):
             return sublist + 1
     raise ValueError('Non-existing game')        
 
-def sort_abc(lst):
+def sort_abc(filename):
 
     GAME_TITLE = 0
 
-    lst = open_file(lst)
+    lst = open_file(filename)
 
     titles = []
 
@@ -96,8 +96,8 @@ def sort_abc(lst):
     return titles    
 
 
-def get_genres(lst):
-    lst = open_file(lst)
+def get_genres(filename):
+    lst = open_file(filename)
     GAME_GENRE = 3
 
     genres = []
