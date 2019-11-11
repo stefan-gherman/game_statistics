@@ -247,4 +247,18 @@ def get_date_ordered(filename):
     GAME_TITLE = 0
     GAME_YEAR = 2
 
-    
+    name_date = []
+    name_sorted = []
+
+    for sublist in range(len(lst)):
+        name_date.append({'name': lst[sublist][GAME_TITLE], 'year': int(lst[sublist][GAME_YEAR])})
+
+    name_date = sorted(name_date, key = itemgetter('name'))
+    name_date = sorted(name_date, key = itemgetter('year'), reverse = True)
+
+    for sublist in range(len(name_date)):
+        name_sorted.append(name_date[sublist]['name'])
+
+    return name_sorted      
+
+
