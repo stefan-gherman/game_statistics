@@ -83,4 +83,6 @@ def print_count_grouped_by_genre():
 
 def print_get_date_ordered():
 
-    print(get_date_ordered(filename))
+    lst = get_date_ordered(filename)
+    for line in lst:
+        print(line)
