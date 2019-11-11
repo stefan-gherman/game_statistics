@@ -2,40 +2,43 @@ import math as mt
 from operator import itemgetter
 
 # Report functions
+
+
 def insertion_sort(lst):
-    for i in range(1,len(lst)):
+    for i in range(1, len(lst)):
         current = lst[i]
         j = i - 1
 
         while j >= 0 and current < lst[j]:
-            lst[j+1] = lst[j]
+            lst[j + 1] = lst[j]
             j -= 1
-        lst[j+1] = current    
-    
-    return lst            
+        lst[j + 1] = current
+
+    return lst
+
 
 def selection_sort(lst):
     for i in range(len(lst)):
         index_min = i
 
-        for j in range(i+1, len(lst)):
+        for j in range(i + 1, len(lst)):
             if lst[index_min] > lst[j]:
                 index_min = j
-        lst[i],lst[index_min] = lst[index_min], lst[i]        
-    return lst    
+        lst[i], lst[index_min] = lst[index_min], lst[i]
+    return lst
+
 
 def open_file(filename):
 
-    with open (filename) as game_text:
+    with open(filename) as game_text:
 
         games_db = game_text.readlines()
-
-    
 
     for line in range(len(games_db)):
         games_db[line] = games_db[line].rstrip('\n').split('\t')
 
     return games_db
+
 
 def count_games(filename):
     lst = open_file(filename)
@@ -48,7 +51,7 @@ def decide(filename, year):
     for sublist in range(len(lst)):
         if lst[sublist][GAME_YEAR] == str(year):
             return True
-    return False        
+    return False
 
 
 def get_latest(filename):
@@ -70,8 +73,8 @@ def count_by_genre(filename, genre):
     current_genre_count = 0
     for sublist in range(len(lst)):
         if lst[sublist][GAME_GENRE] == str(genre):
-            current_genre_count += 1 
-    return current_genre_count        
+            current_genre_count += 1
+    return current_genre_count
 
 
 def get_line_number_by_title(filename, title):
@@ -80,7 +83,8 @@ def get_line_number_by_title(filename, title):
     for sublist in range(len(lst)):
         if lst[sublist][GAME_TITLE] == str(title):
             return sublist + 1
-    raise ValueError('Non-existing game')        
+    raise ValueError('Non-existing game')
+
 
 def sort_abc(filename):
 
@@ -95,7 +99,7 @@ def sort_abc(filename):
 
     titles = selection_sort(titles)
 
-    return titles    
+    return titles
 
 
 def get_genres(filename):
@@ -108,7 +112,8 @@ def get_genres(filename):
         if lst[sublist][GAME_GENRE] not in genres:
             genres.append(lst[sublist][GAME_GENRE])
     genres = selection_sort(genres)
-    return genres        
+    return genres
+
 
 def when_was_top_sold_fps(filename):
 
@@ -120,13 +125,8 @@ def when_was_top_sold_fps(filename):
 
     SEARCH_GENRE = 'First-person shooter'
 
-    
-
     if SEARCH_GENRE not in get_genres(filename):
         raise ValueError
-
-
-         
 
     year = -1
     sales = -1
@@ -136,7 +136,7 @@ def when_was_top_sold_fps(filename):
                 sales = float(lst[sublist][GAME_SALES])
                 year = lst[sublist][GAME_YEAR]
 
-    return float(year)            
+    return float(year)
 
 
 def get_most_played(filename):
@@ -151,8 +151,9 @@ def get_most_played(filename):
         if float(lst[sublist][GAME_SALES]) > max_sales:
             max_sales = float(lst[sublist][GAME_SALES])
             name = lst[sublist][GAME_TITLE]
-    
+
     return name
+
 
 def sum_sold(filename):
 
@@ -163,9 +164,9 @@ def sum_sold(filename):
     total_sales = 0
 
     for sublist in range(len(lst)):
-        total_sales += float(lst[sublist][GAME_SALES])   
+        total_sales += float(lst[sublist][GAME_SALES])
 
-    return total_sales    
+    return total_sales
 
 
 def get_selling_avg(filename):
@@ -176,8 +177,9 @@ def get_selling_avg(filename):
 
     return total_sum / len(lst)
 
+
 def count_longest_title(filename):
-    
+
     lst = open_file(filename)
 
     GAME_TITLE = 0
@@ -188,7 +190,7 @@ def count_longest_title(filename):
         if len(lst[sublist][GAME_TITLE]) > len_name:
             len_name = len(lst[sublist][GAME_TITLE])
 
-    return len_name        
+    return len_name
 
 
 def get_date_avg(filename):
@@ -202,7 +204,7 @@ def get_date_avg(filename):
     for sublist in range(len(lst)):
         sum_years += int(lst[sublist][GAME_YEAR])
 
-    return  mt.ceil(sum_years / len(lst))    
+    return mt.ceil(sum_years / len(lst))
 
 
 def get_game(filename, title):
@@ -215,30 +217,31 @@ def get_game(filename, title):
     GAME_GENRE = 3
     GAME_PUBLISHER = 4
 
-    
     for sublist in range(len(lst)):
         if lst[sublist][GAME_TITLE] == title:
-            list_output = [lst[sublist][GAME_TITLE], float(lst[sublist][GAME_SALES]), int(lst[sublist][GAME_YEAR]), lst[sublist][GAME_GENRE], lst[sublist][GAME_PUBLISHER]]
+            list_output = [lst[sublist][GAME_TITLE], float(lst[sublist][GAME_SALES]), int(
+                lst[sublist][GAME_YEAR]), lst[sublist][GAME_GENRE], lst[sublist][GAME_PUBLISHER]]
             return list_output
 
-    return "Game {} not found.".format(title)         
+    return "Game {} not found.".format(title)
+
 
 def count_grouped_by_genre(filename):
-    
+
     lst = open_file(filename)
 
     dict_output = {}
 
     GAME_GENRE = 3
-    
+
     for sublist in range(len(lst)):
         if lst[sublist][GAME_GENRE] not in dict_output.keys():
             dict_output[lst[sublist][GAME_GENRE]] = 1
         else:
             dict_output[lst[sublist][GAME_GENRE]] += 1
 
-    return dict_output            
-    
+    return dict_output
+
 
 def get_date_ordered(filename):
 
@@ -251,14 +254,13 @@ def get_date_ordered(filename):
     name_sorted = []
 
     for sublist in range(len(lst)):
-        name_date.append({'name': lst[sublist][GAME_TITLE], 'year': int(lst[sublist][GAME_YEAR])})
+        name_date.append(
+            {'name': lst[sublist][GAME_TITLE], 'year': int(lst[sublist][GAME_YEAR])})
 
-    name_date = sorted(name_date, key = itemgetter('name'))
-    name_date = sorted(name_date, key = itemgetter('year'), reverse = True)
+    name_date = sorted(name_date, key=itemgetter('name'))
+    name_date = sorted(name_date, key=itemgetter('year'), reverse=True)
 
     for sublist in range(len(name_date)):
         name_sorted.append(name_date[sublist]['name'])
 
-    return name_sorted      
-
-
+    return name_sorted
