@@ -1,4 +1,4 @@
-
+import math as mt
 # Report functions
 def insertion_sort(lst):
     for i in range(1,len(lst)):
@@ -200,7 +200,7 @@ def get_date_avg(filename):
     for sublist in range(len(lst)):
         sum_years += int(lst[sublist][GAME_YEAR])
 
-    return  int(sum_years / len(lst))    
+    return  (sum_years / len(lst))    
 
 
 def get_game(filename, title):
@@ -208,11 +208,15 @@ def get_game(filename, title):
     lst = open_file(filename)
 
     GAME_TITLE = 0
+    GAME_SALES = 1
+    GAME_YEAR = 2
+    GAME_GENRE = 3
+    GAME_PUBLISHER = 4
 
-    #list_output = []
     
     for sublist in range(len(lst)):
         if lst[sublist][GAME_TITLE] == title:
-            return lst[sublist]
+            list_output = [lst[sublist][GAME_TITLE], float(lst[sublist][GAME_SALES]), int(lst[sublist][GAME_YEAR]), lst[sublist][GAME_GENRE], lst[sublist][GAME_PUBLISHER]]
+            return list_output
 
     return "Game {} not found.".format(title)         
