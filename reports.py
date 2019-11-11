@@ -173,3 +173,17 @@ def get_selling_avg(filename):
     total_sum = sum_sold(filename)
 
     return total_sum / len(lst)
+
+def count_longest_title(filename):
+    
+    lst = open_file(filename)
+
+    GAME_TITLE = 0
+
+    len_name = -1
+
+    for sublist in range(len(lst)):
+        if len(lst[sublist][GAME_TITLE]) > len_name:
+            len_name = len(lst[sublist][GAME_TITLE])
+
+    return len_name        
