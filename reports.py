@@ -164,3 +164,12 @@ def sum_sold(filename):
         total_sales += float(lst[sublist][GAME_SALES])   
 
     return total_sales    
+
+
+def get_selling_avg(filename):
+
+    lst = open_file(filename)
+
+    total_sum = sum_sold(filename)
+
+    return total_sum / len(lst)
