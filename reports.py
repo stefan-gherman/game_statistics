@@ -151,3 +151,16 @@ def get_most_played(filename):
             name = lst[sublist][GAME_TITLE]
     
     return name
+
+def sum_sold(filename):
+
+    lst = open_file(filename)
+
+    GAME_SALES = 1
+
+    total_sales = 0
+
+    for sublist in range(len(lst)):
+        total_sales += float(lst[sublist][GAME_SALES])   
+
+    return total_sales    
