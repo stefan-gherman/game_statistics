@@ -12,6 +12,15 @@ def insertion_sort(lst):
     
     return lst            
 
+def selection_sort(lst):
+    for i in range(len(lst)):
+        index_min = i
+
+        for j in range(i+1, len(lst)):
+            if lst[index_min] > lst[j]:
+                index_min = j
+        lst[i],lst[index_min] = lst[index_min], lst[i]        
+    return lst    
 
 def open_file():
 
@@ -71,7 +80,7 @@ def get_line_number_by_title(lst, title):
             return sublist + 1
     raise ValueError('Non-existing game')        
 
-def sort_abc(lst,title):
+def sort_abc(lst):
 
     GAME_TITLE = 0
 
@@ -82,9 +91,10 @@ def sort_abc(lst,title):
     for sublist in range(len(lst)):
         titles.append(lst[sublist][GAME_TITLE])
 
+    titles = selection_sort(titles)
 
+    return titles    
 
-print(insertion_sort(['forest', 'borsett','california', 'sith']))
 
 
 
