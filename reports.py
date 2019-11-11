@@ -1,4 +1,6 @@
 import math as mt
+from operator import itemgetter
+
 # Report functions
 def insertion_sort(lst):
     for i in range(1,len(lst)):
@@ -220,3 +222,29 @@ def get_game(filename, title):
             return list_output
 
     return "Game {} not found.".format(title)         
+
+def count_grouped_by_genre(filename):
+    
+    lst = open_file(filename)
+
+    dict_output = {}
+
+    GAME_GENRE = 3
+    
+    for sublist in range(len(lst)):
+        if lst[sublist][GAME_GENRE] not in dict_output.keys():
+            dict_output[lst[sublist][GAME_GENRE]] = 1
+        else:
+            dict_output[lst[sublist][GAME_GENRE]] += 1
+
+    return dict_output            
+    
+
+def get_date_ordered(filename):
+
+    lst = open_file(filename)
+
+    GAME_TITLE = 0
+    GAME_YEAR = 2
+
+    
