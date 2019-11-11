@@ -200,7 +200,7 @@ def get_date_avg(filename):
     for sublist in range(len(lst)):
         sum_years += int(lst[sublist][GAME_YEAR])
 
-    return  (sum_years / len(lst))    
+    return  mt.ceil(sum_years / len(lst))    
 
 
 def get_game(filename, title):
